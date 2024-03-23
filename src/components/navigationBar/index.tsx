@@ -1,3 +1,5 @@
+import Logo from "../ui/logo";
+
 type Props = {
     position: string;
 }
@@ -5,6 +7,7 @@ type Props = {
 const NavigationBar = ({ position }: Props) => {
     return (
         <nav className={position}>
+            <Logo />
             <menu>
                 <li>something</li>
                 <li>something</li>
