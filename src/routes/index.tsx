@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Login from "./login";
 import PrivateRoute from "./privateRoute";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import TodayExpenses from "./todayExpenses";
@@ -15,15 +14,15 @@ const RouterComponent = () => {
         }
     ]
 
-    const publicRoutes = [
-        {
-            index: true,
-            path: 'login',
-            component: <Login />,
-            exact: true,
-            restrict: true
-        }
-    ]
+    // const publicRoutes = [
+    //     {
+    //         index: true,
+    //         path: 'login',
+    //         component: <Login />,
+    //         exact: true,
+    //         restrict: true
+    //     }
+    // ]
 
     return (
         <BrowserRouter>
