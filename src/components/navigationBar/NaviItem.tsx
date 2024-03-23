@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
+import { RouteItem } from ".";
+import { useRef } from "react";
 
-type Props = {
-    icon: any;
-    alt: string;
-    to: string;
-    text: string;
-}
-
-const NavItem = ({icon, alt, to, text}: Props) => {
+const NavItem = ({icon, alt, to, text}: RouteItem) => {
+    const ref = useRef<HTMLAnchorElement>(null);
     return (
-        <div className="flex items-center gap-2 p-1 py-2 pl-6 rounded-md cursor-pointer hover:bg-[#2B32B2] transition-all duration-300 ease-in-out">
+        <div className="flex items-center gap-2 py-2 px-6 rounded-md cursor-pointer hover:bg-[#2B32B2] transition-all duration-300 ease-in-out"
+            onClick={() => ref.current?.click()}>
             <img src={icon} alt={alt} className="h-[34px] w-[34px]"/>
-            <Link to={to}>{text}</Link>
+            <Link ref={ref} to={to}>{text}</Link>
         </div>
     );
 }
