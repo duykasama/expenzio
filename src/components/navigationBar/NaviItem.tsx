@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { RouteItem } from ".";
-import { useRef } from "react";
+import { Link } from 'react-router-dom';
+import { RouteItem } from '.';
+import { useRef } from 'react';
 
 const NavItem = ({icon, alt, to, text}: RouteItem) => {
     const ref = useRef<HTMLAnchorElement>(null);

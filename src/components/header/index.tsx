@@ -1,11 +1,11 @@
-import Avatar from "./avatar";
+import Avatar from './avatar';
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbSeparator,
-  } from "@/components/ui/breadcrumb";
+  } from '@/components/ui/breadcrumb';
   
 
 type Props = {

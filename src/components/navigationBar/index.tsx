@@ -1,17 +1,17 @@
-import Logo from "../ui/logo";
-import DayIcon from "@/assets/day-icon.png";
-import ReportIcon from "@/assets/report-icon.png";
-import GoalIcon from "@/assets/goal-icon.png";
-import DebtIcon from "@/assets/debt-icon.png";
-import GearIcon from "@/assets/gear-icon.png";
-import NavItem from "./NaviItem";
+import Logo from '../ui/logo';
+import DayIcon from '@/assets/day-icon.png';
+import ReportIcon from '@/assets/report-icon.png';
+import GoalIcon from '@/assets/goal-icon.png';
+import DebtIcon from '@/assets/debt-icon.png';
+import GearIcon from '@/assets/gear-icon.png';
+import NavItem from './NaviItem';
 
 type Props = {
     position: string;
 }
 
 export type RouteItem = {
-    icon: any;
+    icon: string;
     alt: string;
     to: string;
     text: string;

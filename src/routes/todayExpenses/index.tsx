@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
     Table,
     TableBody,
@@ -7,7 +7,7 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
     Pagination,
     PaginationContent,
@@ -16,9 +16,9 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-  } from "@/components/ui/pagination";
-import expenses from "@/data/expenses";
-import { FaEllipsisH } from "react-icons/fa";
+  } from '@/components/ui/pagination';
+import expenses from '@/data/expenses';
+import { FaEllipsisH } from 'react-icons/fa';
   
 
 const TodayExpenses = () => {

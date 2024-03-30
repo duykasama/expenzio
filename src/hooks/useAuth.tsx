@@ -1,7 +1,7 @@
 
 
 const useAuth = () => {
-    return { token: "something" };
+    return { token: 'something' };
 };
 
 export default useAuth;
