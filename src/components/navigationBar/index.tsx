@@ -48,7 +48,7 @@ const routeItems: RouteItem[] = [
         to: '/settings',
         text: 'Settings'
     },
-]
+];
 
 const NavigationBar = ({ position }: Props) => {
     return (
@@ -65,6 +65,6 @@ const NavigationBar = ({ position }: Props) => {
             </menu>
         </nav>
     );
-}
+};
 
 export default NavigationBar;

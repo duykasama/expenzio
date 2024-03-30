@@ -6,6 +6,6 @@ const Avatar = () => {
             <img src={PlaceholderAvatar} alt="avatar" className='w-12' />
         </div>
     );
-}
+};
 
 export default Avatar;

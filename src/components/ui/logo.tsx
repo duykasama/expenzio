@@ -6,7 +6,7 @@ const Logo = () => {
 
     const navigateHome = () => {
         navigate('/', {replace: true});
-    }
+    };
 
     return (
         <div className='flex justify-around cursor-pointer' onClick={navigateHome}>
@@ -17,6 +17,6 @@ const Logo = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Logo;

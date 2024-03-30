@@ -14,7 +14,7 @@ const RouterComponent = () => {
             exact: true,
             restrict: true
         }
-    ]
+    ];
 
     const publicRoutes = [
         {
@@ -31,7 +31,7 @@ const RouterComponent = () => {
             exact: true,
             restrict: true
         }
-    ]
+    ];
 
     return (
         <BrowserRouter>
@@ -65,6 +65,6 @@ const RouterComponent = () => {
         </BrowserRouter>
 
     );
-}
+};
 
 export default RouterComponent;

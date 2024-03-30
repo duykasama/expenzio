@@ -11,6 +11,6 @@ const NavItem = ({icon, alt, to, text}: RouteItem) => {
             <Link ref={ref} to={to}>{text}</Link>
         </div>
     );
-}
+};
 
 export default NavItem;

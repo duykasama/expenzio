@@ -14,6 +14,6 @@ const DefaultLayout = () => {
             <Footer position="col-span-12 row-span-1"/>
         </div>
     );
-}
+};
 
 export default DefaultLayout;

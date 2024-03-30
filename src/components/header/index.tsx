@@ -5,7 +5,7 @@ import {
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbSeparator,
-  } from "@/components/ui/breadcrumb"
+  } from "@/components/ui/breadcrumb";
   
 
 type Props = {
@@ -29,8 +29,8 @@ const Something = () => {
                 </BreadcrumbItem>
             </BreadcrumbList>
         </Breadcrumb>
-    )
-}
+    );
+};
 
 const Header = ({position}: Props) => {
     return (
@@ -40,6 +40,6 @@ const Header = ({position}: Props) => {
             <Avatar />
         </header>
     );
-}
+};
 
 export default Header;

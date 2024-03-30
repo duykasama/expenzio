@@ -30,6 +30,6 @@ const expenses: Expense[] = [
         price: 100000,
         createdAt: '20-04-2024'
     }
-]
+];
 
 export default expenses;

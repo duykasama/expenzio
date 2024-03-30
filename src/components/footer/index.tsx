@@ -8,6 +8,6 @@ const Footer = ({position}: Props) => {
             <p>&copy; 2024 Nguyen Thanh Duy</p>
         </footer>
     );
-}
+};
 
 export default Footer;

@@ -1,9 +1,9 @@
-import RouterComponent from './routes'
+import RouterComponent from './routes';
 
 function App() {
   return (
     <RouterComponent />
-  )
+  );
 }
 
-export default App
+export default App;
