@@ -36,9 +36,9 @@ const RouterComponent = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navigate to={'today-expenses'} />} />
                 <Route path="/" element={<PrivateRoute />}>
                     <Route element={<DefaultLayout />}>
+                        <Route path="/" element={<Navigate to={'today-expenses'} />} />
                         {
                             privateRoutes.map((route) => (
                                 <Route 
