@@ -56,8 +56,8 @@ const NavigationBar = ({ position }: Props) => {
             <Logo />
             <menu className="flex flex-col gap-1 p-1">
                 {
-                    routeItems.map((item) => (
-                        <li>
+                    routeItems.map((item, idx) => (
+                        <li key={idx}>
                             <NavItem icon={item.icon} alt={item.alt} to={item.to} text={item.text} />
                         </li>
                     ))

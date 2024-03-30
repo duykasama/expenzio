@@ -43,7 +43,7 @@ const TodayExpenses = () => {
                     <TableBody>
                         {
                             expenses.map((expense, idx) => (
-                                <TableRow>
+                                <TableRow key={idx}>
                                     <TableCell>{idx+1}</TableCell>
                                     <TableCell>{expense.category}</TableCell>
                                     <TableCell>{expense.price} VND</TableCell>
