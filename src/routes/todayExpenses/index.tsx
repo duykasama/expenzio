@@ -32,7 +32,7 @@ const TodayExpenses = () => {
                 <Table className="border">
                     <TableCaption>A list of your recent expenses.</TableCaption>
                     <TableHeader>
-                        <TableRow className="text-lg">
+                        <TableRow className="text-lg hover:bg-transparent">
                             <TableHead className="w-[100px]">No.</TableHead>
                             <TableHead>Category</TableHead>
                             <TableHead>Price</TableHead>
