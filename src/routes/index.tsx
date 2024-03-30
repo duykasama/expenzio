@@ -2,8 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './privateRoute';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import TodayExpenses from './todayExpenses';
-import Login from './login';
-import NotFound from './404';
+import { Login, NotFound} from '@/pages/index';
 
 const RouterComponent = () => {
     const privateRoutes = [
