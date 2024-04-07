@@ -26,7 +26,7 @@ const TodayExpenses = () => {
         <section className="w-full h-full p-8 overflow-y-scroll">
             <h1 className="text-3xl">Today expenses</h1>
             <div className="flex justify-end my-4">
-                <Button className="w-fit bg-blue-500">Add new expense</Button>
+                <Button className="w-fit border border-primary-foreground">Add new expense</Button>
             </div>
             <div className="flex flex-col justify-between">
                 <Table className="border">
