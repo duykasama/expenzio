@@ -15,7 +15,7 @@ const RouterComponent = () => {
         }
     ];
 
-    const publicRoutes = [
+    const noLayoutRoutes = [
         {
             index: true,
             path: 'login',
@@ -49,9 +49,9 @@ const RouterComponent = () => {
                         }
                     </Route>
                 </Route>
-                <Route element={<DefaultLayout />}>
+                <Route>
                     {
-                        publicRoutes.map((route) => (
+                        noLayoutRoutes.map((route) => (
                             <Route
                                 index={route.index}
                                 key={route.path}
