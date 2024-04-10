@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 const useAxios = (url: string | undefined) => {
     const localAxios = axios.create({
-        baseURL: url || import.meta.env.VITE_API_URL,
+        baseURL: url || import.meta.env.VITE_API_REST_URL,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
