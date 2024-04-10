@@ -36,6 +36,8 @@ const useAxios = (url: string | undefined) => {
             localAxios.interceptors.response.eject(responseInterceptor);
         };
     }, [url, localAxios]);
+
+    return localAxios;
 };
 
 export default useAxios;
