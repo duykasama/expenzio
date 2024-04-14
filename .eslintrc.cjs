@@ -1,5 +1,3 @@
-const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
-
 module.exports = {
     root: true,
     env: { browser: true, es2020: true },
@@ -20,5 +18,4 @@ module.exports = {
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
     },
-    eslintPluginPrettierRecommended,
 };

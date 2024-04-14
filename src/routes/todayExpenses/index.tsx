@@ -52,8 +52,8 @@ const TodayExpenses = () => {
                         <TableBody>
                             {data.expenses.map(
                                 (
-                                    expense: any,
-                                    idx: number // eslint-disable-line
+                                    expense: any, // eslint-disable-line
+                                    idx: number
                                 ) => (
                                     <TableRow key={idx}>
                                         <TableCell>{idx + 1}</TableCell>
