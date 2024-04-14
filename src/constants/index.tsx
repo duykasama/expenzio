@@ -1,5 +1,3 @@
 import Queries from './queries';
 
-export {
-    Queries,
-};
+export { Queries };

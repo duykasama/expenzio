@@ -8,45 +8,45 @@ import NavItem from './NaviItem';
 
 type Props = {
     position: string;
-}
+};
 
 export type RouteItem = {
     icon: string;
     alt: string;
     to: string;
     text: string;
-}
+};
 
 const routeItems: RouteItem[] = [
     {
         icon: DayIcon,
         alt: 'day icon',
         to: '/today-expenses',
-        text: 'Today expenses'
+        text: 'Today expenses',
     },
     {
         icon: ReportIcon,
         alt: 'report icon',
         to: '/reports',
-        text: 'Reports'
+        text: 'Reports',
     },
     {
         icon: GoalIcon,
         alt: 'goal icon',
         to: '/goals',
-        text: 'Goals'
+        text: 'Goals',
     },
     {
         icon: DebtIcon,
         alt: 'debt icon',
         to: '/debt',
-        text: 'Debt'
+        text: 'Debt',
     },
     {
         icon: GearIcon,
         alt: 'gear icon',
         to: '/settings',
-        text: 'Settings'
+        text: 'Settings',
     },
 ];
 
@@ -55,13 +55,16 @@ const NavigationBar = ({ position }: Props) => {
         <nav className={position}>
             <Logo />
             <menu className="flex flex-col gap-1 p-1">
-                {
-                    routeItems.map((item, idx) => (
-                        <li key={idx}>
-                            <NavItem icon={item.icon} alt={item.alt} to={item.to} text={item.text} />
-                        </li>
-                    ))
-                }
+                {routeItems.map((item, idx) => (
+                    <li key={idx}>
+                        <NavItem
+                            icon={item.icon}
+                            alt={item.alt}
+                            to={item.to}
+                            text={item.text}
+                        />
+                    </li>
+                ))}
             </menu>
         </nav>
     );

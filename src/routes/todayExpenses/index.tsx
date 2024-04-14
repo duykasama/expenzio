@@ -15,7 +15,7 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-  } from '@/components/ui/pagination';
+} from '@/components/ui/pagination';
 
 import { FaEllipsisH } from 'react-icons/fa';
 import { useQuery } from '@apollo/client';
@@ -35,30 +35,43 @@ const TodayExpenses = () => {
                 </div>
                 <div className="flex flex-col justify-between">
                     <Table className="border">
-                        <TableCaption>A list of your recent expenses.</TableCaption>
+                        <TableCaption>
+                            A list of your recent expenses.
+                        </TableCaption>
                         <TableHeader>
                             <TableRow className="text-lg hover:bg-transparent">
                                 <TableHead className="w-[100px]">No.</TableHead>
                                 <TableHead>Category</TableHead>
                                 <TableHead>Price</TableHead>
                                 <TableHead>Created at</TableHead>
-                                <TableHead className="text-right">Action</TableHead>
+                                <TableHead className="text-right">
+                                    Action
+                                </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {
-                                data.expenses.map((expense: any, idx: number) => ( // eslint-disable-line
+                            {data.expenses.map(
+                                (
+                                    expense: any,
+                                    idx: number // eslint-disable-line
+                                ) => (
                                     <TableRow key={idx}>
-                                        <TableCell>{idx+1}</TableCell>
-                                        <TableCell>{expense.category.name}</TableCell>
-                                        <TableCell>{expense.amount} VND</TableCell>
-                                        <TableCell>{expense.createdAt}</TableCell>
+                                        <TableCell>{idx + 1}</TableCell>
+                                        <TableCell>
+                                            {expense.category.name}
+                                        </TableCell>
+                                        <TableCell>
+                                            {expense.amount} VND
+                                        </TableCell>
+                                        <TableCell>
+                                            {expense.createdAt}
+                                        </TableCell>
                                         <TableCell className="flex justify-end">
                                             <FaEllipsisH />
                                         </TableCell>
                                     </TableRow>
-                                ))
-                            }
+                                )
+                            )}
                         </TableBody>
                     </Table>
                     <Pagination className="justify-end">

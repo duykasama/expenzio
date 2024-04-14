@@ -1,9 +1,9 @@
 import { DocumentNode, gql } from '@apollo/client';
 
 type QueryType = {
-    GET_ALL_EXPENSES: DocumentNode,
-    GET_ALL_EXPENSE_CATEGORIES: DocumentNode,
-}
+    GET_ALL_EXPENSES: DocumentNode;
+    GET_ALL_EXPENSE_CATEGORIES: DocumentNode;
+};
 
 const Queries: QueryType = {
     GET_ALL_EXPENSES: gql`

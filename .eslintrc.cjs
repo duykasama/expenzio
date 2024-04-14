@@ -17,14 +17,8 @@ module.exports = {
             'off',
             { allowConstantExport: true },
         ],
-        'quotes': [
-            'error',
-            'single'
-        ],
-        "semi": [
-            'error',
-            'always'
-        ]
+        quotes: ['error', 'single'],
+        semi: ['error', 'always'],
     },
     eslintPluginPrettierRecommended,
-}
+};

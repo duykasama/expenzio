@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
 } from '@/components/ui/dialog';
 import CreateExpenseForm from './createExpenseForm';
 import { useState } from 'react';
@@ -18,13 +18,15 @@ const CreateExpense = () => {
     return (
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-                <Button className="w-fit border border-primary-foreground">Add new expense</Button>
+                <Button className="w-fit border border-primary-foreground">
+                    Add new expense
+                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Add new expense</DialogTitle>
                 </DialogHeader>
-                <CreateExpenseForm handleCloseDialog={handleDialogClose}/>
+                <CreateExpenseForm handleCloseDialog={handleDialogClose} />
             </DialogContent>
         </Dialog>
     );

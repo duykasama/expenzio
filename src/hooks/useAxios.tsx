@@ -6,23 +6,24 @@ const useAxios = (url?: string) => {
         baseURL: url || import.meta.env.VITE_API_REST_URL,
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            withCredentials: true
-        }
+            Accept: 'application/json',
+            withCredentials: true,
+        },
     });
 
     useEffect(() => {
         const requestInterceptor = localAxios.interceptors.request.use(
-            request => {
+            (request) => {
                 if (!request.headers['Authorization'])
-                    request.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+                    request.headers['Authorization'] =
+                        `Bearer ${localStorage.getItem('token')}`;
                 return request;
             },
-            error => Promise.reject(error)
+            (error) => Promise.reject(error)
         );
         const responseInterceptor = localAxios.interceptors.response.use(
-            response => response,
-            error => {
+            (response) => response,
+            (error) => {
                 if (error.response.status === 401) {
                     localStorage.removeItem('token');
                     window.location.href = '/login';
@@ -31,7 +32,7 @@ const useAxios = (url?: string) => {
             }
         );
 
-        return ()=> {
+        return () => {
             localAxios.interceptors.request.eject(requestInterceptor);
             localAxios.interceptors.response.eject(responseInterceptor);
         };

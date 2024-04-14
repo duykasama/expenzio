@@ -1,5 +1,3 @@
-
-
 const useAuth = () => {
     return { token: 'something' };
 };
