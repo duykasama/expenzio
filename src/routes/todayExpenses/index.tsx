@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import {
     Table,
     TableBody,
@@ -17,18 +16,11 @@ import {
     PaginationNext,
     PaginationPrevious,
   } from '@/components/ui/pagination';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
 
 // import expenses from '@/data/expenses';
 import { FaEllipsisH } from 'react-icons/fa';
 import { gql, useQuery } from '@apollo/client';
+import CreateExpense from './createExpense';
 
 const TodayExpenses = () => {
     const GET_EXPENSES = gql`
@@ -51,20 +43,7 @@ const TodayExpenses = () => {
             <section className="w-full h-full p-8 overflow-y-scroll">
                 <h1 className="text-3xl">Today expenses</h1>
                 <div className="flex justify-end my-4">
-                    <Dialog>
-                        <DialogTrigger>
-                            <Button className="w-fit border border-primary-foreground">Add new expense</Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                                <DialogDescription>
-                                This action cannot be undone. This will permanently delete your account
-                                and remove your data from our servers.
-                                </DialogDescription>
-                            </DialogHeader>
-                        </DialogContent>
-                    </Dialog>
+                    <CreateExpense />
                 </div>
                 <div className="flex flex-col justify-between">
                     <Table className="border">

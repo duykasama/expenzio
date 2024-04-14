@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const useAxios = (url: string | undefined) => {
+const useAxios = (url?: string) => {
     const localAxios = axios.create({
         baseURL: url || import.meta.env.VITE_API_REST_URL,
         headers: {
