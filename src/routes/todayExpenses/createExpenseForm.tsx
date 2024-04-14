@@ -21,6 +21,16 @@ import { useState } from 'react';
 import useAxios from '@/hooks/useAxios';
 import { Queries } from '@/constants';
 
+type Props = {
+    handleCloseDialog: () => void;
+};
+
+type Category = {
+    id: string;
+    name: string;
+    description: string;
+};
+
 const formSchema = z.object({
   amount: z.coerce
   .number()
@@ -34,18 +44,9 @@ const formSchema = z.object({
   }),
 });
 
-type Category = {
-    id: string;
-    name: string;
-    description: string;
-};
-
-type Props = {
-    handleCloseDialog: () => void;
-};
-
-function CreateExpenseForm({ handleCloseDialog }: Props) {
+const CreateExpenseForm = ({ handleCloseDialog }: Props) => {
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+    const { data, loading, error } = useQuery(Queries.GET_ALL_EXPENSE_CATEGORIES);
     const axios = useAxios();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -54,11 +55,11 @@ function CreateExpenseForm({ handleCloseDialog }: Props) {
             categoryId: '',
         },
     });
-    const { data, loading, error } = useQuery(Queries.GET_ALL_EXPENSE_CATEGORIES);
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
  
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
         try {
             axios.post('/expenses', {
                 ...values,
@@ -68,7 +69,7 @@ function CreateExpenseForm({ handleCloseDialog }: Props) {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     return (
         <Form {...form}>
@@ -149,6 +150,6 @@ function CreateExpenseForm({ handleCloseDialog }: Props) {
             </form>
         </Form>
     );
-}
+};
 
 export default CreateExpenseForm;
