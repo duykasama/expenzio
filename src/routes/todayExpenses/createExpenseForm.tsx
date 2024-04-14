@@ -16,9 +16,10 @@ import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { Command, CommandEmpty, CommandInput, CommandItem } from '@/components/ui/command';
 import { CommandList } from 'cmdk';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import useAxios from '@/hooks/useAxios';
+import { Queries } from '@/constants';
 
 const formSchema = z.object({
   amount: z.coerce
@@ -53,15 +54,7 @@ function CreateExpenseForm({ handleCloseDialog }: Props) {
             categoryId: '',
         },
     });
-    const GET_CATEGORIES = gql`
-        query GetExpenseCategories {
-            expenseCategories {
-                id
-                name
-            }
-        }
-    `;
-    const { data, loading, error } = useQuery(GET_CATEGORIES);
+    const { data, loading, error } = useQuery(Queries.GET_ALL_EXPENSE_CATEGORIES);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
  

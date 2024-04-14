@@ -17,25 +17,13 @@ import {
     PaginationPrevious,
   } from '@/components/ui/pagination';
 
-// import expenses from '@/data/expenses';
 import { FaEllipsisH } from 'react-icons/fa';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import CreateExpense from './createExpense';
+import { Queries } from '@/constants';
 
 const TodayExpenses = () => {
-    const GET_EXPENSES = gql`
-        query GetExpenses {
-            expenses {
-                id
-                amount
-                createdAt
-                category {
-                    name
-                }
-            }
-        }
-    `;
-    const { data, loading, error } = useQuery(GET_EXPENSES);
+    const { data, loading, error } = useQuery(Queries.GET_ALL_EXPENSES);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return (
