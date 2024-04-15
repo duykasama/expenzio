@@ -17,9 +17,7 @@ const CreateExpense = ({ refetch }: Props) => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const handleDialogClose = () => {
         setDialogOpen(false);
-        setTimeout(() => {
-            refetch();
-        }, 300);
+        refetch();
     };
     return (
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

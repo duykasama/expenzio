@@ -29,6 +29,7 @@ import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import useAxios from '@/hooks/useAxios';
 import { Queries } from '@/constants';
+import { useToast } from '@/components/ui/use-toast';
 
 type Props = {
     handleCloseDialog: () => void;
@@ -50,6 +51,7 @@ const formSchema = z.object({
 });
 
 const CreateExpenseForm = ({ handleCloseDialog }: Props) => {
+    const { toast } = useToast();
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const { data, loading, error } = useQuery(
         Queries.GET_ALL_EXPENSE_CATEGORIES
@@ -66,15 +68,26 @@ const CreateExpenseForm = ({ handleCloseDialog }: Props) => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            axios.post('/expenses', {
+            await axios.post('/expenses', {
                 ...values,
                 monetaryUnit: 'VND',
             });
-            handleCloseDialog();
+            toast({
+                title: 'Success',
+                description: 'Expense created successfully.',
+                duration: 1300,
+            });
         } catch (error) {
             console.error(error);
+            toast({
+                title: 'Error',
+                description: 'Failed to create expense. Please try again.',
+                duration: 1300,
+            });
+        } finally {
+            handleCloseDialog();
         }
     };
 
