@@ -7,6 +7,11 @@ type Expense = {
     createdAt: string;
 };
 
+export const ExpenseActions = {
+    SET_EXPENSES: 'setExpenses',
+    CLEAR_EXPENSES: 'clearExpenses',
+};
+
 export interface ExpenseState {
     expenses: Expense[];
 }

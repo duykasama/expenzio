@@ -23,7 +23,9 @@ import CreateExpense from './createExpense';
 import { Queries } from '@/constants';
 
 const TodayExpenses = () => {
-    const { data, loading, error } = useQuery(Queries.GET_ALL_EXPENSES);
+    const { data, loading, error, refetch } = useQuery(
+        Queries.GET_ALL_EXPENSES
+    );
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return (
@@ -31,7 +33,7 @@ const TodayExpenses = () => {
             <section className="w-full h-full p-8 overflow-y-scroll">
                 <h1 className="text-3xl">Today expenses</h1>
                 <div className="flex justify-end my-4">
-                    <CreateExpense />
+                    <CreateExpense refetch={refetch} />
                 </div>
                 <div className="flex flex-col justify-between">
                     <Table className="border">

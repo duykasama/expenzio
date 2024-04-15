@@ -9,11 +9,17 @@ import {
 import CreateExpenseForm from './createExpenseForm';
 import { useState } from 'react';
 
-const CreateExpense = () => {
+type Props = {
+    refetch: () => void;
+};
+
+const CreateExpense = ({ refetch }: Props) => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const handleDialogClose = () => {
         setDialogOpen(false);
-        // refetch();
+        setTimeout(() => {
+            refetch();
+        }, 300);
     };
     return (
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
