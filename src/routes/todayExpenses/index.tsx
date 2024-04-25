@@ -21,10 +21,17 @@ import { FaEllipsisH } from 'react-icons/fa';
 import { useQuery } from '@apollo/client';
 import CreateExpense from './createExpense';
 import { Queries } from '@/constants';
+import formatDate from '@/lib/dateHelper';
 
 const TodayExpenses = () => {
     const { data, loading, error, refetch } = useQuery(
-        Queries.GET_ALL_EXPENSES
+        Queries.GET_PAGINATED_EXPENSES,
+        {
+            variables: {
+                skip: 0,
+                take: 5,
+            },
+        }
     );
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -52,28 +59,29 @@ const TodayExpenses = () => {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {data.expenses.map(
-                                (
-                                    expense: any, // eslint-disable-line
-                                    idx: number
-                                ) => (
-                                    <TableRow key={idx}>
-                                        <TableCell>{idx + 1}</TableCell>
-                                        <TableCell>
-                                            {expense.category.name}
-                                        </TableCell>
-                                        <TableCell>
-                                            {expense.amount} VND
-                                        </TableCell>
-                                        <TableCell>
-                                            {expense.createdAt}
-                                        </TableCell>
-                                        <TableCell className="flex justify-end">
-                                            <FaEllipsisH />
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            )}
+                            {data.expenses.items &&
+                                data.expenses.items.map(
+                                    (
+                                        expense: any, // eslint-disable-line
+                                        idx: number
+                                    ) => (
+                                        <TableRow key={idx}>
+                                            <TableCell>{idx + 1}</TableCell>
+                                            <TableCell>
+                                                {expense.category.name}
+                                            </TableCell>
+                                            <TableCell>
+                                                {expense.amount} VND
+                                            </TableCell>
+                                            <TableCell>
+                                                {formatDate(expense.createdAt)}
+                                            </TableCell>
+                                            <TableCell className="flex justify-end">
+                                                <FaEllipsisH />
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                )}
                         </TableBody>
                     </Table>
                     <Pagination className="justify-end">

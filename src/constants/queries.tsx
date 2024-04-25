@@ -1,12 +1,13 @@
 import { DocumentNode, gql } from '@apollo/client';
 
 type QueryType = {
-    GET_ALL_EXPENSES: DocumentNode;
+    GET_EXPENSES: DocumentNode;
+    GET_PAGINATED_EXPENSES: DocumentNode;
     GET_ALL_EXPENSE_CATEGORIES: DocumentNode;
 };
 
 const Queries: QueryType = {
-    GET_ALL_EXPENSES: gql`
+    GET_EXPENSES: gql`
         query GetExpenses {
             expenses {
                 id
@@ -14,6 +15,24 @@ const Queries: QueryType = {
                 createdAt
                 category {
                     name
+                }
+            }
+        }
+    `,
+    GET_PAGINATED_EXPENSES: gql`
+        query GetExpenses($skip: Int, $take: Int) {
+            expenses(skip: $skip, take: $take) {
+                items {
+                    id
+                    amount
+                    createdAt
+                    category {
+                        name
+                    }
+                }
+                pageInfo {
+                    hasNextPage
+                    hasPreviousPage
                 }
             }
         }

@@ -1,6 +1,7 @@
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import NavigationBar from '@/components/navigationBar';
+import { Toaster } from '@/components/ui/toaster';
 import { Outlet } from 'react-router-dom';
 
 const DefaultLayout = () => {
@@ -12,6 +13,7 @@ const DefaultLayout = () => {
                 <Outlet />
             </main>
             <Footer position="col-span-12 row-span-1" />
+            <Toaster />
         </div>
     );
 };
