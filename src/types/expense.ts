@@ -1,13 +1,15 @@
 export type ExpenseType = {
-    id: number;
+    id: string;
     amount: number;
     monetaryUnit: string;
     createdAt: string;
-    category: ExpenseCategoryType;
+    category: {
+        name: string;
+    };
 };
 
 export type ExpenseCategoryType = {
-    id: number;
+    id: string;
     name: string;
     description: string;
 };

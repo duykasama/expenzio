@@ -10,9 +10,7 @@ import {
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination';
@@ -23,17 +21,39 @@ import CreateExpense from './createExpense';
 import { Queries } from '@/constants';
 import formatDate from '@/lib/dateHelper';
 import { ExpenseType } from '@/types/expense';
+import { useState } from 'react';
 
 const TodayExpenses = () => {
+    const [page, setPage] = useState(1);
+    const pageSize = 5;
     const { data, loading, error, refetch } = useQuery(
         Queries.GET_PAGINATED_EXPENSES,
         {
             variables: {
-                skip: 0,
-                take: 5,
+                skip: (page - 1) * pageSize,
+                take: pageSize,
             },
         }
     );
+
+    const loadNextPage = () => {
+        if (!data.expenses.pageInfo.hasNextPage) return;
+        refetch({
+            skip: (page - 1) * pageSize,
+            take: pageSize,
+        });
+        setPage(page + 1);
+    };
+
+    const loadPrevPage = () => {
+        if (!data.expenses.pageInfo.hasPreviousPage) return;
+        refetch({
+            skip: (page - 1) * pageSize,
+            take: pageSize,
+        });
+        setPage(page - 1);
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
     return (
@@ -64,7 +84,11 @@ const TodayExpenses = () => {
                                 data.expenses.items.map(
                                     (expense: ExpenseType, idx: number) => (
                                         <TableRow key={idx}>
-                                            <TableCell>{idx + 1}</TableCell>
+                                            <TableCell>
+                                                {(page - 1) * pageSize +
+                                                    idx +
+                                                    1}
+                                            </TableCell>
                                             <TableCell>
                                                 {expense.category.name}
                                             </TableCell>
@@ -82,22 +106,25 @@ const TodayExpenses = () => {
                                 )}
                         </TableBody>
                     </Table>
-                    <Pagination className="justify-end">
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious href="#" />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationNext href="#" />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
+                    {(data.expenses.pageInfo.hasNextPage ||
+                        data.expenses.pageInfo.hasPreviousPage) && (
+                        <Pagination className="justify-end">
+                            <PaginationContent>
+                                <PaginationItem
+                                    className={`${data.expenses.pageInfo.hasPreviousPage ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                                >
+                                    <PaginationPrevious
+                                        onClick={loadPrevPage}
+                                    />
+                                </PaginationItem>
+                                <PaginationItem
+                                    className={`${data.expenses.pageInfo.hasNextPage ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                                >
+                                    <PaginationNext onClick={loadNextPage} />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </Pagination>
+                    )}
                 </div>
             </section>
         </>
