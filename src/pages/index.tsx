@@ -1,4 +1,4 @@
-import Login from './login';
+import Login from './Login';
 import NotFound from './404';
 
 export { NotFound, Login };
