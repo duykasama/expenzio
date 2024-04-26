@@ -22,6 +22,7 @@ import { useQuery } from '@apollo/client';
 import CreateExpense from './createExpense';
 import { Queries } from '@/constants';
 import formatDate from '@/lib/dateHelper';
+import { ExpenseType } from '@/types/expense';
 
 const TodayExpenses = () => {
     const { data, loading, error, refetch } = useQuery(
@@ -61,10 +62,7 @@ const TodayExpenses = () => {
                         <TableBody>
                             {data.expenses.items &&
                                 data.expenses.items.map(
-                                    (
-                                        expense: any, // eslint-disable-line
-                                        idx: number
-                                    ) => (
+                                    (expense: ExpenseType, idx: number) => (
                                         <TableRow key={idx}>
                                             <TableCell>{idx + 1}</TableCell>
                                             <TableCell>
