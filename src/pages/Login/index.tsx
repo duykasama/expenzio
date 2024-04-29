@@ -3,8 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/components/ui/use-toast';
+import useAxios from '@/hooks/useAxios';
+import { AuthState } from '@/store/authSlice';
+import { LoginResponseType } from '@/types/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
@@ -31,9 +37,40 @@ const Login = () => {
         resolver: zodResolver(formSchema),
     });
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const axios = useAxios();
+    const { toast } = useToast();
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        console.log('object :>> ', data);
+        try {
+            const { data: response } = await axios.post('/auth/login', data);
+            const authData = response.data as LoginResponseType;
+            const authState: AuthState = {
+                token: authData.accessToken,
+                // TODO: Replace with actual user data
+                userId: '123456',
+                username: 'John Doe',
+                userRoles: ['admin'],
+            };
+            dispatch({ type: 'auth/setAuth', payload: authState });
+            // TODO: Style the toast with green color
+            toast({
+                title: 'Success',
+                description: 'Logged in successfully',
+                duration: 1500,
+            });
+            navigate('/');
+        } catch (error) {
+            if (error instanceof AxiosError)
+                // TODO: Style the toast with red color
+                toast({
+                    title: 'Error',
+                    description: error.response?.data,
+                    duration: 1500,
+                });
+
+            console.log(error);
+        }
     };
 
     return (

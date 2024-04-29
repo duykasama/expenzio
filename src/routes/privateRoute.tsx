@@ -3,9 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRoute = () => {
     const { token } = useAuth();
-    if (!token) return <Navigate to={'/login'} replace />;
-
-    return <Outlet />;
+    return token ? <Outlet /> : <Navigate to={'/login'} replace />;
 };
 
 export default PrivateRoute;

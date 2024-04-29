@@ -1,15 +1,24 @@
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const baseUrl = import.meta.env.VITE_API_REST_URL;
+const apiVersion = import.meta.env.VITE_API_VERSION;
+
+const getBaseUrl = () => {
+    return `${baseUrl}/${apiVersion}`;
+};
 
 const useAxios = (url?: string) => {
     const localAxios = axios.create({
-        baseURL: url || import.meta.env.VITE_API_REST_URL,
+        baseURL: url || getBaseUrl(),
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             withCredentials: true,
         },
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const requestInterceptor = localAxios.interceptors.request.use(
@@ -26,7 +35,7 @@ const useAxios = (url?: string) => {
             (error) => {
                 if (error.response.status === 401) {
                     localStorage.removeItem('token');
-                    window.location.href = '/login';
+                    navigate('/login');
                 }
                 return Promise.reject(error);
             }
@@ -36,7 +45,7 @@ const useAxios = (url?: string) => {
             localAxios.interceptors.request.eject(requestInterceptor);
             localAxios.interceptors.response.eject(responseInterceptor);
         };
-    }, [url, localAxios]);
+    }, [url, localAxios]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return localAxios;
 };
